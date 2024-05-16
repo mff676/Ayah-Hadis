@@ -1,0 +1,31 @@
+ {
+  "dhikr": [
+    {
+      "name": "Dzikir Pagi",
+      "slug": "morning-dhikr",
+      "total_read": 19
+    },
+    {
+      "name": "Dzikir Petang",
+      "slug": "evening-dhikr",
+      "total_read": 19
+    },
+    {
+      "name": "Dzikir Setelah Shalat",
+      "slug": "dhikr-after-salah",
+      "total_read": 13
+    }
+  ],
+  "dua": [
+    {
+      "name": "Doa Harian",
+      "slug": "daily-dua",
+      "total_read": 38
+    },
+    {
+      "name": "Doa Pilihan",
+      "slug": "selected-dua",
+      "total_read": 8
+    }
+  ]
+}

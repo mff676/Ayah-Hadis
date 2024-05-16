@@ -1,0 +1,6 @@
+.active{
+    @apply text-green-primary
+  }
+  .pending{
+    @apply text-yellow-200
+  }
