@@ -59,9 +59,9 @@ const LoginPage = () => {
                 <h1 className="text-xl text-center font-bold leading-tight tracking-tight md:text-2xl">
                     Masuk
                 </h1>
-                <form className="space-y-4 md:space-y-6">
-                    <Input variant='faded' type="email" label='Email' value={email} onValueChange={setEmail} isInvalid={isInvalid} color={isInvalid && 'danger'} errorMessage={isInvalid && "Please enter a valid email"}/>
-                    <Input variant='faded' type={!isVisible ?'password':'text'} label='Password' value={password} onValueChange={setPassword}  endContent={
+                <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                    <Input variant='faded' type="email" label='Email' value={email} onValueChange={setEmail} isInvalid={isInvalid} color={isInvalid && 'danger'} errorMessage={isInvalid && "Please enter a valid email"} isRequired/>
+                    <Input variant='faded' type={!isVisible ?'password':'text'} label='Password' value={password} onValueChange={setPassword} isRequired endContent={
                         !isVisible ?
                         <button className='focus:outline-none' onClick={handleVisible}>
                             <FaEye size={20} color={'gray'}/>
@@ -72,7 +72,7 @@ const LoginPage = () => {
                         </button>
 
                     }/>
-                    <Button color='success' className='w-full' onClick={handleSubmit}>Masuk</Button>
+                    <Button type='submit' color='success' className='w-full'>Masuk</Button>
                 </form>
                 <p className='text-xs font-poppins text-right'>Belum Memiliki Akun? <Link to={'/register'} className='underline cursor-pointer hover:text-blue-600'>Daftar Sekarang!</Link></p>
                 </div>

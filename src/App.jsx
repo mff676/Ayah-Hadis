@@ -1,11 +1,10 @@
 import './App.css'
-import Header from './components/Header'
 import HomePage from './pages/HomePage'
 import Footer from './components/Footer'
 import QuranPage from './pages/QuranPage'
 import HadisPage from './pages/HadisPage'
 import DzikirPage from './pages/DzikirPage'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import ReadQuranPage from './pages/ReadQuranPage'
 import HadistReadPage from './pages/HadistReadPage'
@@ -19,29 +18,71 @@ import { AyahProvider } from './context/AyahHadisContext'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
+import BlogAdmin from './pages/BlogAdmin'
+import MainHeader from './components/header/MainHeader'
+import FormArticle from './pages/FormArticle'
+import FormDataArticle from './pages/FormDataArticle'
+import DetailArticle from './pages/DetailArticle'
+import DetailEditPage from './pages/DetailEditPage'
+import HeaderAdmin from './components/header/HeaderAdmin'
+import ProfileFormPage from './pages/ProfileFormPage'
+import { getProfile } from './supabase/SupabaseCrud'
+import LoadingBar from './components/LoadingBar'
+import NotPage from './pages/NotPage'
 
 function App() {
-  const [user, setUser] = useState(undefined)
+  const [userData, setUserData] = useState(undefined);
+  const location = useLocation();
+  const [profiles, setProfiles] = useState(undefined);
+  const [Initialize, setInitialize] = useState(true)
+
   useEffect(() => {
-    const onLoad = async() =>{
-      const {user, error} = await getUser();
+    const onLoad = async () => {
+      const { user, error } = await getUser();
       if (error) {
         console.log(error);
       }
       if (user) {
-        setUser(user);
-        }
+        setUserData(user);
+      }
+      if (user) {
+        const { data } = await getProfile(user.id);
+        setProfiles(data[0]);
+      }
     }
-    onLoad()
+    onLoad().then(() => setTimeout(() => {
+      setInitialize(false)
+    }, 3000))
   }, [])
+
+  const shouldHideHeaderFooter =
+    location.pathname.startsWith('/blog/article/') && location.hash ||
+    location.pathname === '/blog/admin' ||
+    location.pathname === '/blog/admin/article-form' ||
+    location.pathname.endsWith('/edit-article');
+  console.log(shouldHideHeaderFooter, location.pathname.endsWith('/edit-article'));
+
+  if (Initialize) {
+    return <LoadingBar />
+  }
   return (
-    <AyahProvider value={{user}}>
+    <AyahProvider value={{ user: userData, profiles }}>
       <AnimatePresence>
-        <Header />
+        {shouldHideHeaderFooter ? <HeaderAdmin /> : <MainHeader />}
         <ScrollToTop>
+          {
+            userData && profiles.role === 'guru' &&
+            <Routes>
+              <Route path='/blog/article/:id/edit-article' element={<DetailEditPage />} />
+              <Route path='/blog/admin' element={<BlogAdmin />} />
+              <Route path='/blog/admin/article-form' element={<FormArticle />} />
+              <Route path='/blog/admin/article-form/data-form' element={<FormDataArticle />} />
+            </Routes>
+          }
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/quran' element={<QuranPage />} />
+            <Route path='/blog/article/:id' element={<DetailArticle />} />
             <Route path='/hadis' element={<HadisPage />} />
             <Route path='/dzikir' element={<DzikirPage />} />
             <Route path='/doa' element={<DoaPage />} />
@@ -52,10 +93,12 @@ function App() {
             <Route path='blog/watch/video/:id' element={<VideoPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />
-            <Route path='/profile/:id' element={<ProfilePage />}/>
+            <Route path='/profile/:id' element={<ProfilePage />} />
+            <Route path='/profile/form' element={<ProfileFormPage />} />
+            <Route path='/*' element={<NotPage />} />
           </Routes>
         </ScrollToTop>
-        <Footer />
+        {!shouldHideHeaderFooter && <Footer />}
       </AnimatePresence>
     </AyahProvider>
   )

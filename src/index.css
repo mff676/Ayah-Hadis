@@ -26,3 +26,8 @@
   font-family: Hafs;
   src: url(/public/assets/fonts/hafs.ttf);
 }
+
+[data-placeholder]:empty:before {
+  color: var(--color-grey-secondary);
+  content: attr(data-placeholder);
+ }
