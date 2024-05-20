@@ -15,12 +15,13 @@ const ReadQuranPage = () => {
   useEffect(() => {
     getQuranList(setSurah, 'surah', id).then(() => setTimeout(() => {
       setIsLoading(false)
-    }, 2000)).then(() => {
-      setTimeout(() => {
-        const section = document.getElementById( '4' )
-        section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
-      }, 2000);
-    })
+    }, 2000))
+    // .then(() => {
+    //   setTimeout(() => {
+    //     const section = document.getElementById( '4' )
+    //     section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+    //   }, 2000);
+    // })
   }, [id]);
   if (isLoading) {
     return <LoadingBar />
@@ -43,7 +44,7 @@ const ReadQuranPage = () => {
         <div className="main-content w-full mt-10 flex flex-col gap-5">
           {
             surah.verses.map((verse, index, array) => (
-              <CardRead q={verse} key={verse} lastLength={array.length - 1 === index} index={index}/>
+              <CardRead q={verse} key={verse} lastLength={array.length - 1 === index} index={index} d={surah}/>
             ))
           }
         </div>

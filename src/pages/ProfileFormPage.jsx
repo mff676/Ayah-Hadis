@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { updateProfile } from '../supabase/SupabaseCrud';
 import { AyahContext } from '../context/AyahHadisContext';
 import { v4 as uuidv4 } from 'uuid';
+import { useEffect } from 'react';
 
 
 const ProfileFormPage = () => {
@@ -12,7 +13,12 @@ const ProfileFormPage = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [file, setFile] = useState([]);
     const { user } = useContext(AyahContext);
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        if (user === undefined) {
+            window.location.href = '/login'
+        }
+    })
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsLoading(true)

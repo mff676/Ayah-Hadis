@@ -46,6 +46,7 @@ const signUp = async (email, pass, fullName, role) => {
           email: email,
           password: pass,
           options: {
+            emailRedirectTo: 'https://ayah-hadis.vercel.app/profile/form',
             data: {
               fullName: fullName,
               role: role,

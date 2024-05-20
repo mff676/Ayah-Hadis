@@ -49,6 +49,9 @@ const getArticleList = async (author_id = null, id = null) => {
   if (id !== null && author_id !== null) {
     query.eq('id', id).eq('author_id', author_id)
   }
+  if (id === null && author_id === null) {
+    query.eq('isPublish', true)
+  }
   const { data, error } = await query;
 
   return { data, error };
@@ -133,6 +136,46 @@ const getProfile = async (id) => {
   return { data }
 }
 
+const insertBookmark = async (user_id, index_ayah, surah_name, ayah_surah) => {
+  const bookmark = {
+  user_id,
+    index_ayah,
+    surah_name,
+    ayah_surah,
+  }
+  const { data, error } = await supabase
+  .from('bookmarks_ayah')
+  .insert([bookmark])
+      return { data, error }
+}
+
+const insertFavorite = async (user_id, author_hadis, hadis_number) => {
+  const hadis = {
+    user_id,
+    author_hadis,
+    hadis_number
+  }
+  const { data, error } = await supabase
+  .from('favorite_hadis')
+  .insert([hadis])
+  return { data, error }
+}
+
+const getFavoriteHadis = async () => {
+  const { data, error } = await supabase
+  .from('favorite_hadis')
+  .select('*')
+  return { data, error }
+}
+
+const deleteFavorite = async (id, number) => {
+  const { data, error } = await supabase
+  .from('favorite_hadis')
+  .delete()
+  .eq('user_id', id)
+  .eq('hadis_number', number);
+  return { data, error }
+}
 export {
   insertArticle,
   getArticleList,
@@ -140,5 +183,9 @@ export {
   deleteArticle,
   updateArticle,
   updateProfile,
-  getProfile
+  getProfile,
+  insertBookmark,
+  insertFavorite,
+  getFavoriteHadis,
+  deleteFavorite
 }

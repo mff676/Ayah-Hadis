@@ -4,15 +4,34 @@ import { IoMdMore } from 'react-icons/io'
 import { FaRegCopy } from 'react-icons/fa6';
 import { RiShareForwardLine } from 'react-icons/ri';
 import toast from 'react-hot-toast';
-const DropdownButton = ({d}) => {
+import { insertBookmark } from '../../supabase/SupabaseCrud';
+import { useContext } from 'react';
+import { AyahContext } from '../../context/AyahHadisContext';
+const DropdownButton = ({ d, index, surah }) => {
+    const { user } = useContext(AyahContext);
     const handleCopy = () => {
         navigator.clipboard.writeText(`${d.text.arab}\n${d.translation.id}\n\n\n\n\nMau baca artikel lainnya? atau mau membaca Al-Quran atau hadist? semua nya ada di https://ayahHadis.com, website islami terlengkap di Indonesia`);
         toast.success('Berhasil di copy');
     }
-    
+
+    const handleBookmark = async () => {
+        if (user === undefined) {
+            toast.error('Anda harus login terlebih dahulu');
+            return;
+        }
+        const { error } = await insertBookmark(user.id, index, surah.name.transliteration.id, d.number.inSurah);
+        if (error) {
+            toast.error('Gagal menyimpan bookmark, mungkin anda sudah menyimpannya sebelumnya');
+            console.error(error);
+            return;
+        } else {
+            toast.success('Berhasil menyimpan bookmark');
+        }
+
+    }
     return (
         <Menu>
-            <MenuButton><button className='hover:bg-slate-200 rounded-full p-1  flex transition-all items-center justify-center'><IoMdMore size={20}/></button></MenuButton>
+            <MenuButton><button className='hover:bg-slate-200 rounded-full p-1  flex transition-all items-center justify-center'><IoMdMore size={20} /></button></MenuButton>
             <Transition
                 enter="duration-200 ease-out"
                 enterFrom="scale-95 opacity-0"
@@ -23,7 +42,7 @@ const DropdownButton = ({d}) => {
             >
                 <MenuItems anchor="bottom" className="origin-top transition bg-white shadow-lg !p-3 flex justify-center flex-col rounded-md  ms-7">
                     <MenuItem>
-                        <li  className="data-[focus]:bg-blue-100 cursor-pointer p-1 rounded flex items-end gap-3">
+                        <li className="data-[focus]:bg-blue-100 cursor-pointer p-1 rounded flex items-end gap-3" onClick={handleBookmark}>
                             <MdOutlineBookmarkAdd size={20} /> Simpan ke bookmark
                         </li>
                     </MenuItem>

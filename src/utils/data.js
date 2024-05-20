@@ -5,9 +5,9 @@ const getQuranList = async (setData, type, detail="") => {
     setData(listQuran.data.data);
 }
 
-const getHadistList = async(setData, value="") => {
-    const listHadist = await axios.get(`${import.meta.env.VITE_HADIST_URL}hadith/${value}`)
-    setData(listHadist.data)
+const getHadistList = async( value="", number="") => {
+    const listHadist = await axios.get(`${import.meta.env.VITE_HADIST_URL}hadith/${value}${number}`)
+    return listHadist.data
 }
 
 const getYoutubeList = async(setData, channelId="", q="") => {

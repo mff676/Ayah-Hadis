@@ -8,6 +8,7 @@ import dailyDoa from '../data/daily-dua/id.json'
 import CardRead from '../components/dhikr-dua-components/CardRead';
 import category from '../data/Categories.json';
 import { motion } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 
 const DzikirReadPage = () => {
     const [data, setData] = useState([]);
@@ -57,6 +58,7 @@ const DzikirReadPage = () => {
             transition={{ duration: 0.5 }}
             className='min-h-screen py-12 px-16'
         >
+            <Toaster />
             <div className="header-content flex flex-col gap-2 items-center">
                 <h2 className="text-2xl font-semibold font-poppins">{titleArray[id]}</h2>
                 <h4 className="font-poppins text-grey-secondary">{category.dhikr[id].total_read} Bacaan</h4>

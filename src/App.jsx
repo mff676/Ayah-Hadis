@@ -29,6 +29,7 @@ import ProfileFormPage from './pages/ProfileFormPage'
 import { getProfile } from './supabase/SupabaseCrud'
 import LoadingBar from './components/LoadingBar'
 import NotPage from './pages/NotPage'
+import JuzReadPage from './pages/JuzReadPage'
 
 function App() {
   const [userData, setUserData] = useState(undefined);
@@ -87,6 +88,7 @@ function App() {
             <Route path='/dzikir' element={<DzikirPage />} />
             <Route path='/doa' element={<DoaPage />} />
             <Route path='quran/detail/surah/:id' element={<ReadQuranPage />} />
+            <Route path='quran/detail/jozz/:id' element={<JuzReadPage />} />
             <Route path='hadis/detail/:name' element={<HadistReadPage />} />
             <Route path='dzikir/detail/:id' element={<DzikirReadPage />} />
             <Route path='doa/detail/:id' element={<DzikirReadPage />} />
