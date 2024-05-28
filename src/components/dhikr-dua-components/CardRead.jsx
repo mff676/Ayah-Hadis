@@ -11,10 +11,10 @@ const CardRead = ({d, lastIndex}) => {
         toast.success('Berhasil di copy');
     };
   return (
-    <div className={`card ${!lastIndex&&'border-b-1'} pb-10 mt-11 text-center`}>
+    <div className={`card ${!lastIndex&&'border-b-1'} pb-10 mt-11 text-justify md:text-center`}>
     <div className="card-header mb-10">
-        <div className="flex justify-center items-center mb-5 gap-1">
-        <h3 className="font-medium text-2xl">{d.title}</h3>
+        <div className="flex flex-col md:flex-row justify-center items-center mb-5 gap-1">
+        <h3 className="font-medium text-base md:text-2xl">{d.title}</h3>
         {/* <motion.button whileTap={{scale: .7}} className='rounded-full hover:bg-slate-200 p-1' title='info'><IoIosInformationCircleOutline /></motion.button> */}
         <ModalComponent header={'Faidah Hadist'} content={d.fawaid} source={d.source}/>
         </div>
@@ -25,9 +25,9 @@ const CardRead = ({d, lastIndex}) => {
         </div>
     </div>
     <div className="body-card">
-        <h2 className="mb-5 text-2xl font-hafs font-medium">{d.arabic}</h2>
-        <h2 className="leading-7 mb-6">{d.translation} {d.notes !== null && `(${d.notes})`}</h2>
-    </div>
+        <h2 className="mb-5 text-2xl font-hafs font-medium text-right">{d.arabic}</h2>
+        <h2 className="leading-7 mb-6 text-xs md:text-base">{d.translation} {d.notes !== null && `(${d.notes})`}</h2>
+    </div>  
 </div>  )
 }
 

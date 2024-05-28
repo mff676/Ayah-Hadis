@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { HiPencilAlt } from 'react-icons/hi';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import HeaderAdmin from '../components/header/HeaderAdmin';
 import { getArticleList, getImage } from '../supabase/SupabaseCrud';
 import Swal from 'sweetalert2';
 import LoadingBar from "../components/LoadingBar"

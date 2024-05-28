@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 const {nextui} = require("@nextui-org/react");
-import bg from "./public";
 export default {
   content: [
     "./index.html",

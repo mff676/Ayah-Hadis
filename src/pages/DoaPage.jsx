@@ -13,7 +13,7 @@ const DoaPage = () => {
         >
          <h1 className='text-center font-bold font-poppins text-green-primary text-4xl'>Doa-Doa Pilihan</h1>
          <div className="mt-10">
-           <div className='grid grid-cols-2 gap-4 w-full'>
+           <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-full'>
              {
                Categories.dua.map((i, index) => (
                  <CardList key={index} d={i} index={index} prevPage='doa'/>

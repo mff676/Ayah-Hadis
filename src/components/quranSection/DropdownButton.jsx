@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { IoMdMore } from 'react-icons/io'
+import { IoIosInformationCircleOutline, IoMdMore } from 'react-icons/io'
 import { FaRegCopy } from 'react-icons/fa6';
 import { RiShareForwardLine } from 'react-icons/ri';
 import toast from 'react-hot-toast';
@@ -19,6 +19,12 @@ const DropdownButton = ({ d, index, surah }) => {
             toast.error('Anda harus login terlebih dahulu');
             return;
         }
+        if (surah === null) {
+            toast('Coming Soon', {
+                icon: <IoIosInformationCircleOutline  />,
+            });
+            return;
+        }
         const { error } = await insertBookmark(user.id, index, surah.name.transliteration.id, d.number.inSurah);
         if (error) {
             toast.error('Gagal menyimpan bookmark, mungkin anda sudah menyimpannya sebelumnya');
@@ -31,7 +37,7 @@ const DropdownButton = ({ d, index, surah }) => {
     }
     return (
         <Menu>
-            <MenuButton><button className='hover:bg-slate-200 rounded-full p-1  flex transition-all items-center justify-center'><IoMdMore size={20} /></button></MenuButton>
+            <MenuButton><button className='hover:bg-slate-200 rounded-full p-1  flex transition-all items-center justify-center'><IoMdMore size={24} /></button></MenuButton>
             <Transition
                 enter="duration-200 ease-out"
                 enterFrom="scale-95 opacity-0"
