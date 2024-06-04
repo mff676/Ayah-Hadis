@@ -5,6 +5,7 @@ import CardSurah from "./CardSurah";
 import { getQuranList } from "../../utils/data";
 import { JoozList } from "../../data/JoozList";
 import { SurahList } from "../../data/surah_list";
+import CardSurahSkeleton from "../skeleton/CardSurahSkeleton";
 
 const QuranComponent = () => {
   const tabsRef = useRef([]);
@@ -18,6 +19,7 @@ const QuranComponent = () => {
     <div className="flex flex-col items-center mt-16">
     <TabsPills activeTab={activeTab} setActiveTab={setActiveTab} tabsRef={tabsRef} arrayContent={arrayTabs} />
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-10">
+      {/* <CardSurahSkeleton /> */}
         {
             activeTab === 1 ?
             JoozList.map(i => (

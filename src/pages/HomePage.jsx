@@ -9,6 +9,9 @@ const HomePage = () => {
      initial={{opacity: 0}}
      animate={{opacity:1}}
     >
+      <marquee  width="100%" direction="left" height="50px" scrollamount="10">
+      Situs ini masih dalam tahap pengembangan. Kami berusaha keras untuk memperbaiki dan meningkatkan pengalaman pengguna. Terima kasih atas kesabaran dan pengertiannya.
+      </marquee>
     <HeroHomeSection />
    <BlogPage/>
     </motion.section>
