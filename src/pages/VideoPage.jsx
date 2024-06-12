@@ -60,18 +60,6 @@ const VideoPage = () => {
               <div className="card-list w-full flex flex-col gap-6">
                 {
                   videoList.items.map((i, index) => (
-                    // <Link key={index} to={`/blog/watch/video/${i.id.videoId}`} className='cursor-pointer'>
-                    //   <div className="card flex min-w-full h-36 gap-5">
-                    //     <img src={i.snippet.thumbnails.medium.url} alt='image thumbnail' className='aspect-square min-w-[230px] min-h-[120px]  max-w-[230px] max-h-[120px] rounded-xl object-cover' />
-                    //     <div className="flex flex-col gap-1">
-                    //       <h2 className='font-medium text-base' dangerouslySetInnerHTML={{ __html: i.snippet.title }} />
-                    //       <div className="detail">
-                    //         <h3 className='text-gray-500 text-sm'>{i.snippet.channelTitle}</h3>
-                    //         <h3 className='text-gray-500 text-sm'>{formatDate(i.snippet.publishedAt)}</h3>
-                    //       </div>
-                    //     </div>
-                    //   </div>
-                    // </Link>
                     <Link key={index} to={`/blog/watch/video/${i.id.videoId}`} className='cursor-pointer w-full'>
                     <div className="card flex flex-col sm:flex-row gap-5">
                       <img src={i.snippet.thumbnails.medium.url} alt='image thumbnail' className='aspect-video w-full min-w-[230px]  sm:min-h-[140px] sm:max-h-[180px] sm:min-w-[280px] sm:max-w-[320px] rounded-xl object-cover' />

@@ -65,9 +65,9 @@ const RegisterPage = () => {
   }, [email]);
 
   return (
-    <section className='min-h-screen bg-kakba bg-center object-cover'>
-      <Toaster />
-      <div className=" h-full w-full bg-black/45">
+    <section className='h-screen bg-kakba bg-center object-cover'>
+    <Toaster />
+    <div className=" min-h-full w-full flex justify-center items-center bg-black/45">
         <div className="flex justify-center items-center w-full h-full py-10">
           <div className="w-full rounded-lg shadow border md:mt-0 sm:max-w-md xl:p-0 backdrop-blur bg-white/20">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
