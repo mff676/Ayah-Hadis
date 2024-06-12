@@ -21,7 +21,7 @@ export default {
         hafs : 'Hafs'
       },
       backgroundImage: {
-        'kakba' : "url('assets/images/bgkakbah.jpg')"
+        'kakba' : "url('/assets/images/bgkakbah.jpg')"
       }
     },
 
