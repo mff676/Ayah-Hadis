@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
-import HeaderAdmin from '../components/header/HeaderAdmin'
 import { useNavigate } from 'react-router-dom'
 import { FaPlus } from 'react-icons/fa'
-import { AyahContext } from '../context/AyahHadisContext'
-import { getArticleList } from '../supabase/SupabaseCrud'
-import CardBlogAdmin from '../components/admin/CardBlogAdmin'
+import { AyahContext } from '../../context/AyahHadisContext'
+import { getArticleList } from '../../supabase/SupabaseCrud'
+import CardBlogAdmin from '../../components/admin/CardBlogAdmin'
 
 const BlogAdmin = () => {
   const { user } = useContext(AyahContext);

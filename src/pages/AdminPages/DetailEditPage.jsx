@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import HeaderAdmin from '../components/header/HeaderAdmin'
-import { Button, Input, Select, SelectItem } from '@nextui-org/react'
-import { deleteArticle, getArticleList } from '../supabase/SupabaseCrud'
+import { Button, Input } from '@nextui-org/react'
+import { deleteArticle, getArticleList } from '../../supabase/SupabaseCrud'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
 

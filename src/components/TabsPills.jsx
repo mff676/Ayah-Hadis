@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+
 
 const TabsPills = ({ activeTab, setActiveTab, tabsRef, arrayContent }) => {
     const [indicatorStyle, setIndicatorStyle] = useState({});
@@ -32,8 +34,13 @@ const TabsPills = ({ activeTab, setActiveTab, tabsRef, arrayContent }) => {
             </div>
         );
     } else {
-        return null; // Return null if there are no tabs
+        return null; 
     }
 }
-
+TabsPills.propTypes = {
+    activeTab: PropTypes.number.isRequired,
+    setActiveTab: PropTypes.func.isRequired,
+    tabsRef: PropTypes.object.isRequired,
+    arrayContent: PropTypes.array.isRequired
+}
 export default TabsPills

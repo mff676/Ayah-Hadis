@@ -35,7 +35,7 @@ const insertArticle = async (authorId, title, content, file, fileName, category,
 const getArticleList = async (author_id = null, id = null) => {
   let query = supabase
     .from('ayah_article')
-    .select('*')
+    .select('*', {count: "exact"})
     .order('publish_date', { ascending: true });
 
   if (author_id !== null) {
@@ -52,9 +52,9 @@ const getArticleList = async (author_id = null, id = null) => {
   if (id === null && author_id === null) {
     query.eq('isPublish', true)
   }
-  const { data, error } = await query;
+  const { data, error, count  } = await query;
 
-  return { data, error };
+  return { data, error, count };
 };
 
 const getImage = (filename, to='task_school_1') => {

@@ -18,18 +18,19 @@ import { AyahProvider } from './context/AyahHadisContext'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import ProfilePage from './pages/ProfilePage'
-import BlogAdmin from './pages/BlogAdmin'
 import MainHeader from './components/header/MainHeader'
-import FormArticle from './pages/FormArticle'
-import FormDataArticle from './pages/FormDataArticle'
 import DetailArticle from './pages/DetailArticle'
-import DetailEditPage from './pages/DetailEditPage'
 import HeaderAdmin from './components/header/HeaderAdmin'
 import ProfileFormPage from './pages/ProfileFormPage'
 import { getProfile } from './supabase/SupabaseCrud'
 import LoadingBar from './components/LoadingBar'
 import NotPage from './pages/NotPage'
 import JuzReadPage from './pages/JuzReadPage'
+import DetailEditPage from './pages/AdminPages/DetailEditPage'
+import BlogAdmin from './pages/AdminPages/BlogAdmin'
+import FormArticle from './pages/AdminPages/FormArticle'
+import FormDataArticle from './pages/AdminPages/FormDataArticle'
+import { Helmet } from 'react-helmet'
 
 function App() {
   const [userData, setUserData] = useState(undefined);
@@ -61,13 +62,18 @@ function App() {
     location.pathname === '/blog/admin' ||
     location.pathname === '/blog/admin/article-form' ||
     location.pathname.endsWith('/edit-article');
-  console.log(shouldHideHeaderFooter, location.pathname.endsWith('/edit-article'));
 
   if (Initialize) {
     return <LoadingBar />
   }
   return (
     <AyahProvider value={{ user: userData, profiles }}>
+      <Helmet>
+        <title>Wawasan Islami dari Al-Quran hingga Dzikir - AyahHadis</title>
+        <meta name="description" content="Temukan wawasan Islami lengkap mulai dari Al-Quran, Hadis, doa, dzikir, hingga artikel-artikel Islami bermanfaat di Ayah Hadis. Dapatkan terjemahan Al-Quran, penjelasan Hadis Nabi, dan panduan doa harian secara praktis." />
+        <meta name="keywords" content="Al-Quran, Hadis, Islam, terjemahan Al-Quran, tafsir Al-Quran, Hadis Nabi, doa harian, dzikir, artikel Islami, panduan Islam, rumaysho" />
+        <meta name="author" content="Muhammad Fathul Falah" />
+      </Helmet>
       <AnimatePresence>
         {shouldHideHeaderFooter ? <HeaderAdmin /> : <MainHeader />}
         <ScrollToTop>

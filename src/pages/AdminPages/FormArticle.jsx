@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 
 import { Button } from '@nextui-org/react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getArticleList } from '../supabase/SupabaseCrud';
+import { getArticleList } from '../../supabase/SupabaseCrud';
 import Swal from 'sweetalert2';
 import HTMLReactParser from 'html-react-parser/lib/index';
-import LoadingBar from '../components/LoadingBar';
+import LoadingBar from '../../components/LoadingBar';
 
 const FormArticle = () => {
   const [title, setTitle] = useState('');

@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { insertBookmark } from '../../supabase/SupabaseCrud';
 import { useContext } from 'react';
 import { AyahContext } from '../../context/AyahHadisContext';
+import PropTypes from 'prop-types'
 const DropdownButton = ({ d, index, surah }) => {
     const { user } = useContext(AyahContext);
     const handleCopy = () => {
@@ -65,6 +66,12 @@ const DropdownButton = ({ d, index, surah }) => {
                 </MenuItems>
             </Transition>
         </Menu>)
+}
+// make proptypes
+DropdownButton.propTypes = {
+    index: PropTypes.number.isRequired,
+    surah: PropTypes.object.isRequired,
+    d: PropTypes.object.isRequired
 }
 
 export default DropdownButton

@@ -9,7 +9,6 @@ const CardBlog = ({ page, d }) => {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [link, setLink] = useState('');
-    console.log(d);
 
     useEffect(() => {
         if (page === 0) {

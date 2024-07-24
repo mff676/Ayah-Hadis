@@ -11,16 +11,29 @@ const QuranComponent = () => {
   const tabsRef = useRef([]);
   const [activeTab, setActiveTab] = useState(0);
   const arrayTabs = ['Surah', 'Juz'];
+  const [isLoading, setIsLoading] = useState(true)
   const [surah, setSurah] = useState([])
+  const itemSkeleton = []
+  for (let i = 0; i < 10; i++) {
+    itemSkeleton.push(<CardSurahSkeleton />)
+    
+  }
   useEffect(() => {
-    getQuranList(setSurah, 'surah')
+    getQuranList(setSurah, 'surah').then(() => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+    })
   },[])
   return (
     <div className="flex flex-col items-center mt-16">
     <TabsPills activeTab={activeTab} setActiveTab={setActiveTab} tabsRef={tabsRef} arrayContent={arrayTabs} />
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 my-10">
-      {/* <CardSurahSkeleton /> */}
+
         {
+          isLoading ?
+          itemSkeleton
+      :
             activeTab === 1 ?
             JoozList.map(i => (
               <CardJooz key={i.juz} j={i}/>

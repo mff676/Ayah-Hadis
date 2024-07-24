@@ -18,6 +18,15 @@ const CardReadHadist = ({ h, lastIndex, hadis, favoriteList }) => {
     };
 
     const handleFavorite = async () => {
+        if (!user) {
+            toast.error("Please Login First", {
+                duration: 2000
+            })
+            setTimeout(() => {
+                window.location.replace('/login')
+            }, 2200);
+            return;
+        }
         if (isInsert) {
             // Call delete function
             const { data, error } = await deleteFavorite(user.id, h.number);

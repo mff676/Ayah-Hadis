@@ -1,5 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 const CardSurah = ({q}) => {
   return (
@@ -21,5 +23,8 @@ const CardSurah = ({q}) => {
             </div>
 </Link>
   )
+}
+CardSurah.propTypes = {
+  q : PropTypes.object.isRequired
 }
 export default CardSurah
